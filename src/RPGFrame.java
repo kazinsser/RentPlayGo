@@ -1,4 +1,6 @@
+import javax.swing.JFrame;
 
-public class RPGFrame {
+
+public class RPGFrame extends JFrame {
 
 }
