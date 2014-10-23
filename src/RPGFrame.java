@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 
 public class RPGFrame extends JFrame {
 
-	Color color;
+	Color color = Color.BLACK;
 
 	public RPGFrame() {
 		super("RentPlayGo");
@@ -59,6 +59,7 @@ public class RPGFrame extends JFrame {
 		myAccountButton.addActionListener(handler);
 		contactButton.addActionListener(handler);
 
+		
 	}
 
 	public class Handler implements ActionListener {
@@ -68,8 +69,9 @@ public class RPGFrame extends JFrame {
 			String navButtonPressed = e.getActionCommand();
 
 			switch (navButtonPressed) {
-			case "Home":
-				HomePanel homePanel = new HomePanel(color);
+			case "Home":				
+				JPanel homePanel = new HomePanel(color);
+				addPanels(homePanel);
 				break;
 			case "Cart":
 				CartPanel cartPanel = new CartPanel();
@@ -84,8 +86,14 @@ public class RPGFrame extends JFrame {
 		}
 	}
 	
-	public void addPanels() {
+	public void addPanels(JPanel panel) {
 		removePanels();
+		
+		JPanel homePanel = new HomePanel(color);
+		
+		add(homePanel, BorderLayout.CENTER);
+		
+		validate();
 	}
 
 	public void removePanels() {

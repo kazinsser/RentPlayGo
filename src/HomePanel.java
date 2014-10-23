@@ -19,21 +19,21 @@ public class HomePanel extends JPanel {
 		setLayout(new FlowLayout());
 		setBackground(homePanelColor);
 
-		Icon xboxIcon = new ImageIcon(getClass().getResource("xbox_logo.jpeg"));
+		Icon xboxIcon = new ImageIcon(getClass().getResource("xbox_one_logo.jpg"));
 		xboxButton = new JButton(xboxIcon);
 
-		Icon ps4Icon = new ImageIcon(getClass().getResource("ps4_logo.jpeg"));
+		Icon ps4Icon = new ImageIcon(getClass().getResource("ps4_logo.jpg"));
 		ps4Button = new JButton(ps4Icon);
 
-		Icon wiiuIcon = new ImageIcon("wii_u_logo.jpeg");
+		Icon wiiuIcon = new ImageIcon(getClass().getResource("wii_u_logo.jpg"));
 		wiiuButton = new JButton(wiiuIcon);
 
 		emptyPanel = new JPanel();
 
 		add(xboxButton);
-		add(emptyPanel);
+//		add(emptyPanel);
 		add(ps4Button);
-		add(emptyPanel);
+//		add(emptyPanel);
 		add(wiiuButton);
 
 	}
