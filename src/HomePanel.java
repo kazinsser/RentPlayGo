@@ -10,5 +10,7 @@ public class HomePanel extends JPanel{
 		//
 		setLayout(new FlowLayout());
 		setBackground(homePanelColor);
+		
+		//testing home
 	}
 }
