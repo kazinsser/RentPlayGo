@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,6 +14,9 @@ import javax.swing.JTextField;
 public class RPGFrame extends JFrame {
 
 	Color color = Color.BLACK;
+	JPanel currentPanel;
+	JPanel homePanel;
+	int x;
 
 	public RPGFrame() {
 		super("RentPlayGo");
@@ -31,7 +35,7 @@ public class RPGFrame extends JFrame {
 
 		JButton homeButton = new JButton("Home");
 		JButton cartButton = new JButton("Cart");
-		JButton myAccountButton = new JButton("My Accout");
+		JButton myAccountButton = new JButton("My Account");
 		JButton contactButton = new JButton("Contact");
 
 		toolBar.setLayout(new BorderLayout());
@@ -59,46 +63,103 @@ public class RPGFrame extends JFrame {
 		myAccountButton.addActionListener(handler);
 		contactButton.addActionListener(handler);
 
-		
+		x = 0;
+		homePanel = new HomePanel(color);
+		homePanel.addMouseListener(handler);
+		this.addMouseListener(handler);
+		addPanels(homePanel);		
 	}
 
-	public class Handler implements ActionListener {
+	public RPGFrame(String string){
+		switch(string){
+		case "xboxButton":
+			System.out.println("2nd construct");
+			buttonManager("Xbox One"); 
+			break;
+		}
+	}
+	
+	public void buttonManager(String buttonPressed){
+		
+		switch (buttonPressed) {
+		case "Home":				
+			JPanel homePanel = new HomePanel(color);
+			addPanels(homePanel);
+			break;
+		case "Cart":
+			System.out.println("hi");
+			JPanel cartPanel = new CartPanel();
+			addPanels(cartPanel);
+			break;
+		case "My Account":
+			JPanel accountPanel = new AccountPanel();
+			addPanels(accountPanel);
+			break;
+		case "Contact":
+			JPanel contactPanel = new ContactPanel();
+			addPanels(contactPanel);
+			break;
+		case "Xbox One":				
+			JPanel xboxPanel = new GamePanel("Xbox One");
+			addPanels(xboxPanel);
+			break;
+		case "Playstation 4":
+			JPanel playPanel = new GamePanel("Xbox One");
+			addPanels(playPanel);
+			break;
+		case "Wii U":
+			JPanel wiiPanel = new GamePanel("Xbox One");
+			addPanels(wiiPanel);
+			break;
+		default:
+			System.out.println(buttonPressed);
+			break;
+		}
+	}
+	
+	public class Handler extends  MouseAdapter implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 
 			String navButtonPressed = e.getActionCommand();
 
-			switch (navButtonPressed) {
-			case "Home":				
-				JPanel homePanel = new HomePanel(color);
-				addPanels(homePanel);
-				break;
-			case "Cart":
-				CartPanel cartPanel = new CartPanel();
-				break;
-			case "My Accout":
-				AccountPanel accountPanel = new AccountPanel();
-				break;
-			case "Contact":
-				ContactPanel contact = new ContactPanel();
-				break;
+			buttonManager(navButtonPressed);
+			
+		}
+		
+		public void mouseClicked(ActionEvent e){
+			x = homePanel.getX();
+			System.out.println(x);
+			if(x == 0){
+				
+			} 
+			else if(x == 1){
+				JPanel xboxPanel = new GamePanel("Xbox One");
+				addPanels(xboxPanel);
 			}
 		}
 	}
 	
 	public void addPanels(JPanel panel) {
-		removePanels();
+		if(currentPanel!=null){
+			remove(currentPanel);
+			revalidate();
+		}
 		
-		JPanel homePanel = new HomePanel(color);
+		currentPanel = panel;
 		
-		add(homePanel, BorderLayout.CENTER);
+		System.out.println(currentPanel);
+//		/JPanel panel = new HomePanel(color);
+		
+		
+		add(panel, BorderLayout.CENTER);
 		
 		validate();
 	}
 
-	public void removePanels() {
-
-	}
+//	public void removePanels(JPanel panel) {
+//
+//	}
 	
 	
 }
