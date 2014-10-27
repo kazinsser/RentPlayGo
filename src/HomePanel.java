@@ -15,15 +15,17 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
-
-
 public class HomePanel extends JPanel {
 	JButton xboxButton;
 	JButton ps4Button;
 	JButton wiiuButton;
 	JPanel emptyPanel;
-	int x;
 
+	public HomePanel(){
+		
+		
+	}
+	
 	public HomePanel(Color homePanelColor) {
 		// layout and background color
 		setLayout(new FlowLayout());
@@ -34,24 +36,26 @@ public class HomePanel extends JPanel {
 		add(background);
 		background.setLayout(new FlowLayout());
 		
-		Border borderColor = new LineBorder(homePanelColor, 2);
+		Border borderColor = new LineBorder(homePanelColor, 1);
 
 		Icon xboxIcon = new ImageIcon(getClass().getResource("xbox_one_logo.jpg"));
 		xboxButton = new JButton(xboxIcon);
 		xboxButton.setPreferredSize(new Dimension(670,200));
 		xboxButton.setBorder(borderColor);
+		xboxButton.setRolloverIcon(new ImageIcon(getClass().getResource("xbox_one_logo2.jpg")));
 
 		Icon ps4Icon = new ImageIcon(getClass().getResource("ps4_logo.jpg"));
 		ps4Button = new JButton(ps4Icon);
 		ps4Button.setPreferredSize(new Dimension(670,200));
 		ps4Button.setBorder(borderColor);
-		ps4Button.setBackground(homePanelColor);
-		ps4Button.setRolloverIcon(xboxIcon); 
+		//ps4Button.setBackground(homePanelColor);
+		ps4Button.setRolloverIcon(new ImageIcon(getClass().getResource("ps4_logo2.jpg"))); 
 		
 		Icon wiiuIcon = new ImageIcon(getClass().getResource("wii_u_logo.jpg"));
 		wiiuButton = new JButton(wiiuIcon);
 		wiiuButton.setPreferredSize(new Dimension(670,200));
 		wiiuButton.setBorder(borderColor);
+		wiiuButton.setRolloverIcon(new ImageIcon(getClass().getResource("wii_u_logo2.jpg")));
 		
 		emptyPanel = new JPanel();
 
@@ -65,18 +69,15 @@ public class HomePanel extends JPanel {
 		xboxButton.addActionListener(handler);
 	}
 	
-	public int getX(){
-		return x;
-	}
+	
 
 	private class Handler implements ActionListener {
-
 		public void actionPerformed(ActionEvent event) {
 			if (event.getSource() == xboxButton) {
-				x = 1;
+				JFrame RPGFrame = new RPGFrame("xboxButton");				
 				
 			} else if (event.getSource() == ps4Button) {
-				x = 2;
+
 			} else if (event.getSource() == wiiuButton) {
 
 			}
