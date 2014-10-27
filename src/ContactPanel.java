@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -26,9 +27,11 @@ public class ContactPanel extends JPanel {
 		
 		JLabel contactUsLabel = new JLabel("Contact Us");
 		c.fill = GridBagConstraints.HORIZONTAL;
+		c.weighty = 1;
+		c.weightx = 1;
 		c.gridx = 1;
 		c.gridy = 0;
-		c.insets = new Insets(40, 0, 0, 40);
+		c.insets = new Insets(40, 30, 0, 40);
 		contactUsPanel.add(contactUsLabel, c);
 		
 		c.gridx = 2;
@@ -37,26 +40,33 @@ public class ContactPanel extends JPanel {
 		
 		JLabel emailLabel = new JLabel("Your email:");
 		c.gridx = 0;
-		c.gridy = 2;
+		c.gridy = 1;
 		contactUsPanel.add(emailLabel, c);
 		
 		JTextField emailTextField = new JTextField();
 		c.gridx = 1;
-		c.gridy = 2;
+		c.gridy = 1;
 		c.gridwidth = 2;
 		contactUsPanel.add(emailTextField, c);
 		
 		JLabel messageLabel = new JLabel("Message us:");
 		c.gridx = 0;
-		c.gridy = 3;
+		c.gridy = 2;
 		contactUsPanel.add(messageLabel, c);
 		
 		JTextField messageTextField = new JTextField();
 		c.gridx = 1;
-		c.gridy = 3;
+		c.gridy = 2;
 		c.ipadx = 100;
 		c.ipady = 100;
 		contactUsPanel.add(messageTextField, c);
+		
+		JButton sendMessageButton = new JButton("Send Message");
+		c.gridx = 1;
+		c.gridy = 3;
+		c.ipadx = 0;
+		c.ipady = 0;
+		contactUsPanel.add(sendMessageButton, c);
 		
 		contactUsPanel.setSize(600, 400);
 		contactUsPanel.setLocation(225, 100);
